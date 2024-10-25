@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            app:completed_animation_enabled="false"
             android:elevation="6dp"
             app:bounce_on_start="true"
             app:text="Sample SlideToActView" />

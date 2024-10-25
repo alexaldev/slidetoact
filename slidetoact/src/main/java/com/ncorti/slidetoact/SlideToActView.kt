@@ -270,6 +270,8 @@ class SlideToActView
         /** Private flag to check if the slide gesture have been completed */
         private var mIsCompleted = false
 
+        private var isCompletedAnimationEnabled = true
+
         /** Private flag to check if the touch events should be handled or not */
         private var mIsRespondingToTouchEvents = true
 
@@ -396,6 +398,7 @@ class SlideToActView
                             R.styleable.SlideToActView_animate_completion,
                             true,
                         )
+                    isCompletedAnimationEnabled = getBoolean(R.styleable.SlideToActView_completed_animation_enabled, true)
                     animDuration =
                         getInteger(
                             R.styleable.SlideToActView_animation_duration,
@@ -753,6 +756,12 @@ class SlideToActView
          * Private method that is performed when user completes the slide
          */
         private fun startAnimationComplete() {
+
+            if (!isCompletedAnimationEnabled) {
+                onSlideCompleteListener?.onSlideComplete(this@SlideToActView)
+                return
+            }
+
             val animSet = AnimatorSet()
 
             // Animator that moves the cursor
